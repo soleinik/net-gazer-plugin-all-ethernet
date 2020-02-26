@@ -129,9 +129,9 @@ impl<'a> Packet<'a> {
       if let Some(x) = args.proto { builder.add_proto(x); }
       builder.add_dst(args.dst);
       builder.add_src(args.src);
+      builder.add_flags(args.flags);
       builder.add_id(args.id);
       builder.add_len(args.len);
-      builder.add_flags(args.flags);
       builder.finish()
     }
 
@@ -164,8 +164,8 @@ impl<'a> Packet<'a> {
     self._tab.get::<u16>(Packet::VT_ID, Some(0)).unwrap()
   }
   #[inline]
-  pub fn flags(&self) -> u8 {
-    self._tab.get::<u8>(Packet::VT_FLAGS, Some(0)).unwrap()
+  pub fn flags(&self) -> u16 {
+    self._tab.get::<u16>(Packet::VT_FLAGS, Some(0)).unwrap()
   }
   #[inline]
   pub fn opts(&self) -> Option<&'a [u8]> {
@@ -179,7 +179,7 @@ pub struct PacketArgs<'a> {
     pub proto: Option<flatbuffers::WIPOffset<&'a  str>>,
     pub len: u16,
     pub id: u16,
-    pub flags: u8,
+    pub flags: u16,
     pub opts: Option<flatbuffers::WIPOffset<flatbuffers::Vector<'a ,  u8>>>,
 }
 impl<'a> Default for PacketArgs<'a> {
@@ -222,8 +222,8 @@ impl<'a: 'b, 'b> PacketBuilder<'a, 'b> {
     self.fbb_.push_slot::<u16>(Packet::VT_ID, id, 0);
   }
   #[inline]
-  pub fn add_flags(&mut self, flags: u8) {
-    self.fbb_.push_slot::<u8>(Packet::VT_FLAGS, flags, 0);
+  pub fn add_flags(&mut self, flags: u16) {
+    self.fbb_.push_slot::<u16>(Packet::VT_FLAGS, flags, 0);
   }
   #[inline]
   pub fn add_opts(&mut self, opts: flatbuffers::WIPOffset<flatbuffers::Vector<'b , u8>>) {

@@ -26,7 +26,7 @@ impl Builder<'_> {
         self.seq += 1; //FIXME: overflow
     }
 
-    pub fn build_message(&mut self, proto:&str, src:u32, dst:u32, len:u16, id:u16, flags:u8, opts:&[u8]) -> Vec<u8>{
+    pub fn build_message(&mut self, proto:&str, src:u32, dst:u32, len:u16, id:u16, flags:u16, opts:&[u8]) -> Vec<u8>{
         let mut msg = Vec::<u8>::new();
         self.reset();
 

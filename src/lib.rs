@@ -6,7 +6,7 @@ use pnet::packet::ethernet::EthernetPacket;
 use pnet::datalink::NetworkInterface;
 
 mod app;
-
+mod conf;
 
 const ID:u8=core::PLUGIN_ID_ALLIPV4;
 const NAME:&str="All ipv4";
@@ -25,7 +25,10 @@ impl Plugin for AllEtherPlugin{
     fn on_load(&mut self, _iface:&NetworkInterface, tx:CoreSender){
         env_logger::init();
 
-        self.app = Some(app::App::new(tx));
+        let mut conf = conf::Conf::default();
+        conf.load( env!("CARGO_PKG_NAME"));
+
+        self.app = Some(app::App::new(tx, conf));
         info!("Hello from \"{}\"(message_id:{}), ! ", NAME, ID);
     }
 

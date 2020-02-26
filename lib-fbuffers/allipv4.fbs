@@ -14,7 +14,7 @@ table Packet{
     proto: string;
     len:uint16;
     id:uint16;
-    flags:uint8;
+    flags:uint16;
     opts:[uint8];
 
 }

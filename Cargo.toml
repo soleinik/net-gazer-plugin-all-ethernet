@@ -24,7 +24,7 @@ log = "0.4.8"
 env_logger = "0.7.1"
 
 pnet = "0.25.0"
-
+config = "0.10.1"
 
 [lib]
 name = "net_gazer_allipv4"
