@@ -33,6 +33,8 @@ impl Conf{
             .find(|p|p.is_file())
             .map( |p|p.to_str().unwrap().to_owned());
 
+
+
         if let Some(cfg_file) = path{
 
             let cfg_file = Path::new(&cfg_file).canonicalize().unwrap();

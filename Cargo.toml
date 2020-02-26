@@ -1,5 +1,5 @@
 [package]
-name = "libnet_gazer_allipv4"
+name = "libnet-gazer-allipv4"
 version = "0.1.0"
 authors = ["S Oleinik <162591+s-oleinik@users.noreply.github.com>"]
 edition = "2018"
