@@ -45,11 +45,11 @@ impl <'a> App{
                         if let Some(tcp_pkt) = pnet::packet::tcp::TcpPacket::new(ip4pkt.payload()){
                             tcp_pkt.get_flags()
                         }else{
-                            ip4pkt.get_flags() as u16            //u8
+                            ip4pkt.get_flags()            //u8
                         }
                     }else{
-                        ip4pkt.get_flags() as u16            //u8
-                    };
+                        ip4pkt.get_flags()            //u8
+                    } as u16;
 
                 let pkt_opts = ip4pkt.get_options_raw();        //&[u8]
 

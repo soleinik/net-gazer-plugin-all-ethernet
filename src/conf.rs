@@ -40,12 +40,11 @@ impl Conf{
             let cfg_file = Path::new(&cfg_file).canonicalize().unwrap();
             let cfg_file = cfg_file.to_str().unwrap();
             info!("Loading configuration from {}...", cfg_file);
-            let mut settings = config::Config::default();
-            settings.merge(config::File::with_name(cfg_file)).unwrap();
+            let settings = config::Config::builder().add_source(config::File::with_name(cfg_file)).build().expect("failed to load config");
 
             if let Ok(ignored_protos) = settings.get_array(KEY_IGNORED_PROTOS){
                 ignored_protos.into_iter().for_each(|v|{
-                    if let Ok(s) = v.into_str(){
+                    if let Ok(s) = v.into_string(){
                         self.ignored_proto.push(s.to_uppercase());
                     }
                 });

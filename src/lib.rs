@@ -42,7 +42,7 @@ impl Plugin for AllEtherPlugin{
 }
 
 #[no_mangle]
-pub extern "C" fn net_gazer_plugin_new () -> * mut dyn Plugin{
+pub extern "C" fn net_gazer_plugin_new () -> * mut AllEtherPlugin{
      let boxed:Box<AllEtherPlugin> = Box::new(AllEtherPlugin::default());
      Box::into_raw(boxed)
 }

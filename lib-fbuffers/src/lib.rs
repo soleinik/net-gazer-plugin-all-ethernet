@@ -38,7 +38,8 @@ impl Builder<'_> {
             len,
             id,
             flags,
-            opts:Some(self.bldr.create_vector_direct(opts))
+            //opts:Some(self.bldr.create_vector_direct(opts))
+            opts:Some(self.bldr.create_vector(opts))
         };
 
         let packet = Packet::create(& mut self.bldr, &packet_args);
